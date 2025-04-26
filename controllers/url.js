@@ -16,15 +16,12 @@ async function handlegenerateShortURL(req,res){
 
 async function handlegetAnalytics(req,res){
     const shortId=req.params.shortId;
-    const entry=await URL.findOne({shortId});
-    if(!entry) return res.status(404).json({error:'url not found'})
-    return res.json({
-        shortId:entry.shortId,
-        redirectURL:entry.redirectURL,
-        visitHistory:entry.visitHistory,
-    })
+    const result=await URL.findOne({shortId});
+    return res.json({totalClicks:result.visitHistory.length,analyrics:result.visitHistory});
+
 }
 module.exports={
     handlegenerateShortURL,
+    handlegetAnalytics,
     
 }

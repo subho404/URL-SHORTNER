@@ -6,7 +6,24 @@ const app=express();
 const PORT=8001;
 app.use(express.json())
 app.use('/url',urlRoute);
-app.get('/:shortId',async(req,res)=>{
+app.get('/test',async(req,res)=>{
+    const allurls=await URL.find({});
+    return res.end(`
+        <html>
+           <head></head>
+           <body>
+                 <ol>
+                    ${allurls.map(url=>`<li> ${url.shortId}-${url.redirectURL}-${url.visitHistory.length}</li>`).join('')}
+                 </ol>
+
+           </body>
+
+        </html>
+        
+        
+        `)
+})
+app.get('/url/:shortId',async(req,res)=>{
    const shortId=req.params.shortId;
    const entry=await URL.findOneAndUpdate({
     shortId,
