@@ -15,7 +15,7 @@ app.use('/',staticRoute);
 app.get('/test',async(req,res)=>{
     const allurls=await URL.find({});
     return res.render('home',{
-      urls:allurls,
+      urls:allurls
     });
 })
 app.get('/url/:shortId',async(req,res)=>{
