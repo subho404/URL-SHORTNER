@@ -1,8 +1,8 @@
 const express=require('express')
 const path=require('path')
-const urlRoute=require('./routes/url.js')
 const URL=require('./models/url.js')
 const {connectToMongoDB}=require('./connect')
+const urlRoute=require('./routes/url.js')
 const staticRoute=require('./routes/staticRouter.js')
 const app=express();
 const PORT=8001;
